@@ -8,6 +8,7 @@ import argparse
 from colorama import Fore, Back, Style
 from prompt_toolkit import prompt
 from prompt_toolkit.completion import Completer, Completion
+from prompt_toolkit.history import FileHistory
 
 
 
@@ -44,10 +45,11 @@ class MyCustomCompleter(Completer):
 
 
 def shell(host, port, password):
+    history = FileHistory(os.path.expanduser('~/.rcon_shell'))
     with valve.source.rcon.RCON((host, int(port)), parsed_args.password) as con:
         while 1:
             try:
-                text = prompt(u"rcon {}:{}>".format(host, port), completer=MyCustomCompleter(con))
+                text = prompt(u"rcon {}:{}>".format(host, port), completer=MyCustomCompleter(con), history=history)
             except KeyboardInterrupt:
                 print("Closing Rcon connection and exiting")
                 exit(0)
