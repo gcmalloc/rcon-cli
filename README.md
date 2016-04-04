@@ -1,6 +1,6 @@
 A rcon command line client that supports completion, history and colors.
 
-[Imgur](http://i.imgur.com/FDmGHPX.jpg)
+![image of rcon usage](http://i.imgur.com/FDmGHPX.jpg)
 
 # Install
 
